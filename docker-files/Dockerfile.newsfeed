@@ -1,0 +1,14 @@
+FROM FROM openjdk:8
+
+ENV APP_PORT ${PORT}
+ENV STATIC_URL ${STATIC}
+ENV QUOTE_SERVICE_URL ${QUOTE_URL}
+ENV NEWSFEED_SERVICE_TOKEN "T1&eWbYXNWG1w1^YGKDPxAWJ@^et^&kX"
+
+WORKDIR /newsfeed
+
+COPY build/newsfeed.jar ./
+
+EXPOSE $APP_PORT
+
+CMD ["java -jar", "newsfeed.jar"]

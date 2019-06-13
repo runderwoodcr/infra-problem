@@ -1,0 +1,11 @@
+FROM python:3
+
+WORKDIR /static_server
+
+ADD front-end/public/* ./
+
+EXPOSE 8000
+
+ENTRYPOINT ["python3"]
+
+CMD ["server.py"]
