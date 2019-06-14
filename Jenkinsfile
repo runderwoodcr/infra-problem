@@ -30,8 +30,7 @@ pipeline {
             steps{
                 git 'https://github.com/runderwoodcr/infra-problem.git'
                 sh """
-                    [ ! -f "${JENKINS_HOME}/bin/lein" ] && { mkdir -p "${JENKINS_HOME}/bin"; wget https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein; chmod a+x lein; mv lein "${JENKINS_HOME}/bin/lein"; lein; }
-                    export PATH=$PATH:${JENKINS_HOME}/bin
+                    [ ! -f "/usr/local/bin/lein" ] && { wget https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein; chmod a+x lein; mv lein "/usr/local/bin"; lein; }
                     make libs && make clean all
                 """
             }
