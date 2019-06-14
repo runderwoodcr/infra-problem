@@ -19,7 +19,11 @@ pipeline {
         // Build auto timeout
         timeout(time: 60, unit: 'MINUTES')
     }
-    agent any
+    agent {
+        node{
+            label 'master'
+        }
+    }
     stages {
         stage('Build')
         {
