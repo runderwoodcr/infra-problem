@@ -42,8 +42,8 @@ pipeline {
                     --build-arg NEWSFEED_SERVICE_URL=${env.NEWSFEED_SERVICE_URL} \
                     -f docker-files/Dockerfile.front-end .")
                     newsfeeds = docker.build("newsfeed:${env.VERSION}",
-                    "--build-arg APP_PORT=${env.NEWS_APP_PORT} \
-                    -f docker-files/Dockerfile.newsfeed .")
+                    '--build-arg APP_PORT="${env.NEWS_APP_PORT}" \
+                    -f docker-files/Dockerfile.newsfeed .')
                     quotes = docker.build("quotes:${env.VERSION}",
                     "--build-arg APP_PORT=${env.QUOTES_APP_PORT} \
                     -f docker-files/Dockerfile.quotes .")
