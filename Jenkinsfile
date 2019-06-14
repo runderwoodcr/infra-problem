@@ -46,9 +46,9 @@ pipeline {
                     quotes = docker.build("quotes:${env.VERSION}",
                     "--build-arg APP_PORT=${env.QUOTES_APP_PORT} \
                     --f docker-files/Dockerfile.quotes .")
-                    docker.withRegistry('https://1234567890.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:demo-ecr-credentials') {
-                        docker.image('demo').push('latest')
-                    }
+                    //docker.withRegistry('https://1234567890.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:demo-ecr-credentials') {
+                    //    docker.image('demo').push('latest')
+                    //}
                 }
             }
         }
