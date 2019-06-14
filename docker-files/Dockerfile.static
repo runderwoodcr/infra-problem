@@ -8,4 +8,4 @@ EXPOSE 8000
 
 ENTRYPOINT ["python3"]
 
-CMD ["server.py"]
+CMD ["serve.py"]
