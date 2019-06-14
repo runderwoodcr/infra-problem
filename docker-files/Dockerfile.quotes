@@ -1,4 +1,4 @@
-FROM FROM openjdk:8
+FROM openjdk:8
 
 ENV APP_PORT ${PORT}
 
