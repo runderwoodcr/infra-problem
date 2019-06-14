@@ -36,16 +36,16 @@ pipeline {
                 script{
                     static_server = docker.build("static_content:${env.VERSION}","-f docker-files/Dockerfile.static .")
                     frontend = docker.build("frontend:${env.VERSION}",
-                    "--build-arg APP_PORT=${env.FRONT_APP_PORT} \
-                    --build-arg STATIC_URL=${env.STATIC_URL} \
-                    --build-arg QUOTE_SERVICE_URL=${env.QUOTE_SERVICE_URL} \
-                    --build-arg NEWSFEED_SERVICE_URL=${env.NEWSFEED_SERVICE_URL} \
+                    "--build-arg PORT=${env.FRONT_APP_PORT} \
+                    --build-arg URL=${env.STATIC_URL} \
+                    --build-arg QUOTE_URL=${env.QUOTE_SERVICE_URL} \
+                    --build-arg NEWSFEED_URL=${env.NEWSFEED_SERVICE_URL} \
                     -f docker-files/Dockerfile.front-end .")
                     newsfeeds = docker.build("newsfeed:${env.VERSION}",
-                    "--build-arg APP_PORT='${env.NEWS_APP_PORT}' \
+                    "--build-arg PORT='${env.NEWS_APP_PORT}' \
                     -f docker-files/Dockerfile.newsfeed .")
                     quotes = docker.build("quotes:${env.VERSION}",
-                    "--build-arg APP_PORT=${env.QUOTES_APP_PORT} \
+                    "--build-arg PORT=${env.QUOTES_APP_PORT} \
                     -f docker-files/Dockerfile.quotes .")
                     //docker.withRegistry('https://1234567890.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:demo-ecr-credentials') {
                     //    docker.image('demo').push('latest')

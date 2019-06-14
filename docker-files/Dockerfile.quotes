@@ -1,5 +1,6 @@
 FROM openjdk:8
 
+ARG PORT
 ENV APP_PORT ${PORT}
 
 WORKDIR /quotes
