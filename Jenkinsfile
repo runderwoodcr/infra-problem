@@ -63,7 +63,7 @@ pipeline {
         }
     }
 
-    post
+    /*post
     {
         always
         {
@@ -73,6 +73,6 @@ pipeline {
             sh "docker rmi newsfeed:${env.VERSION} | true"
             sh "docker rmi quotes:${env.VERSION} | true"
         }
-    }
+    }*/
 
 }
