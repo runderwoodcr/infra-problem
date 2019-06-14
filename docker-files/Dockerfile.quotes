@@ -9,4 +9,4 @@ COPY build/quotes.jar ./
 
 EXPOSE $APP_PORT
 
-CMD ["java -jar", "quotes.jar"]
+CMD ["java", "-jar", "quotes.jar"]

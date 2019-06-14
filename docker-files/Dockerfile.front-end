@@ -16,4 +16,4 @@ COPY build/front-end.jar ./
 
 EXPOSE $APP_PORT
 
-CMD ["java -jar", "front-end.jar"]
+CMD ["java", "-jar", "front-end.jar"]

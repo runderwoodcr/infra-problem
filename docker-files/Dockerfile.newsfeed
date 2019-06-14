@@ -8,4 +8,4 @@ COPY build/newsfeed.jar ./
 
 EXPOSE $APP_PORT
 
-CMD ["java -jar", "newsfeed.jar"]
+CMD ["java", "-jar", "newsfeed.jar"]
