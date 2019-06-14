@@ -12,7 +12,7 @@ pipeline {
         QUOTES_APP_PORT = "8090"
         STATIC_URL = "http://static_content:8000"
         QUOTE_SERVICE_URL = "http://quotes:8090"
-        NEWSFEED_SERVICE_URL = "http://newsfee:8080"
+        NEWSFEED_SERVICE_URL = "http://newsfeed:8080"
     }
     options {
         // Build auto timeout
