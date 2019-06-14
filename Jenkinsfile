@@ -13,6 +13,7 @@ pipeline {
         STATIC_URL = "http://static_content:8000"
         QUOTE_SERVICE_URL = "http://quotes:8090"
         NEWSFEED_SERVICE_URL = "http://newsfeed:8080"
+        REGISTRY=""
     }
     options {
         // Build auto timeout
@@ -25,8 +26,8 @@ pipeline {
             steps{
                 git 'https://github.com/runderwoodcr/infra-problem.git'
                 sh """
-                    [ ! -f "${JENKINS_HOME}/bin/lein" ] && { mkdir -p "${JENKINS_HOME}/bin"; wget https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein; chmod a+x lein; mv lein "${JENKINS_HOME}/bin/lein"; lein; }
-                    export PATH=$PATH:${JENKINS_HOME}/bin
+                    [ ! -f "${WORKSPACE}/bin/lein" ] && { mkdir -p "${WORKSPACE}/bin"; wget https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein; chmod a+x lein; mv lein "${WORKSPACE}/bin/lein"; lein; }
+                    export PATH=$PATH:${WORKSPACE}/bin
                     make libs && make clean all
                 """
             }
@@ -47,9 +48,12 @@ pipeline {
                     quotes = docker.build("quotes:${env.VERSION}",
                     "--build-arg PORT=${env.QUOTES_APP_PORT} \
                     -f docker-files/Dockerfile.quotes .")
-                    //docker.withRegistry('https://1234567890.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:demo-ecr-credentials') {
-                    //    docker.image('demo').push('latest')
-                    //}
+                    docker.withRegistry("${env.REGISTRY}") {
+                        static_server.push()
+                        frontend.push()
+                        newsfeeds.push()
+                        quotes.push()
+                    }
                 }
             }
         }
@@ -63,7 +67,7 @@ pipeline {
         }
     }
 
-    /*post
+    post
     {
         always
         {
@@ -73,6 +77,6 @@ pipeline {
             sh "docker rmi newsfeed:${env.VERSION} | true"
             sh "docker rmi quotes:${env.VERSION} | true"
         }
-    }*/
+    }
 
 }
