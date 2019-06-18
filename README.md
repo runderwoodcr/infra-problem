@@ -98,8 +98,12 @@ git config --global credential.UseHttpPath true
 
 ### Automated Setup
 If you don't want to manually run any of the steps, you can just run the script setup:
+```bash
 chomod +x setup.sh
-./setup.sh
+./setup.sh [-i -c]
+i: Installs the infrastructure
+c: Remove the Infrastructure
+```
 > Once the script execution its completed, grab the url to connect to Jenkins, login into it with the credentials displayed, if by any reason you get prompted to install the plugins, just click in the [x] in the top right of the panel,
 once in you can click in the infra-job job and then click in build, that should build the applications and generate the images and then they will be deployed to k8s and you will be able to reach it with the LB information that will be provided at the end of the build job 
 ### Manual Steps
