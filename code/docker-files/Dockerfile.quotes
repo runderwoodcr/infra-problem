@@ -1,0 +1,12 @@
+FROM openjdk:8
+
+ARG PORT
+ENV APP_PORT ${PORT}
+
+WORKDIR /quotes
+
+COPY build/quotes.jar ./
+
+EXPOSE $APP_PORT
+
+CMD ["java", "-jar", "quotes.jar"]
