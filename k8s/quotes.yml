@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quotes
+spec:
+  selector:
+    matchLabels:
+      run: quotes
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: quotes
+    spec:
+      containers:
+      - name: quotes
+        image: 722910786382.dkr.ecr.us-east-1.amazonaws.com/quotes:latest
+        ports:
+          - name: web1
+            containerPort: 8090
+            protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /ping
+            port: 8090
+        readinessProbe:
+          httpGet:
+            path: /ping
+            port: 8090

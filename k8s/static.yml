@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: static-content
+spec:
+  selector:
+    matchLabels:
+      run: static-content
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: static-content
+    spec:
+      containers:
+      - name: static-content
+        image: 722910786382.dkr.ecr.us-east-1.amazonaws.com/static-content:latest
+        ports:
+        - containerPort: 8000
