@@ -40,6 +40,7 @@ You can configure you config with the following input variables:
 | `repo_name`             | Code Repository                   | `infra-problem` |
 | `repo_default_branch`   | Repository Default Branch         | `master`        |
 
+At minimum you need to modify the value of `node-key` to match an existing key pair in your AWS account.
 
 ### AWS Setup and IAM
 > Its assumed that you you know how to create IAM users/roles/policies in AWS so this will not be covered here
@@ -81,6 +82,7 @@ You need to download kubectl and aws-iam-authenticator from AWS in order to work
 You can download both from here:
 
 > kubectl
+
 ```https://amazon-eks.s3-us-west-2.amazonaws.com/1.12.7/2019-03-27/bin/linux/amd64/kubectl```
 
 > aws-iam-authenticator
@@ -98,14 +100,16 @@ git config --global credential.UseHttpPath true
 
 ### Automated Setup
 If you don't want to manually run any of the steps, you can just run the script setup:
+
 ```bash
-chomod +x setup.sh
+chmod +x setup.sh
 ./setup.sh [-i -c]
 i: Installs the infrastructure
 c: Remove the Infrastructure
 ```
 > Once the script execution its completed, grab the url to connect to Jenkins, login into it with the credentials displayed, if by any reason you get prompted to install the plugins, just click in the [x] in the top right of the panel,
 once in you can click in the infra-job job and then click in build, that should build the applications and generate the images and then they will be deployed to k8s and you will be able to reach it with the LB information that will be provided at the end of the build job 
+
 ### Manual Steps
 
 You need to run the following commands to create the resources with Terraform:
