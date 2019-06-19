@@ -90,6 +90,7 @@ i)
     exit 0;;
 c) 
     echo "Cleaning Setup..."
+    export KUBECONFIG=~/.kube/eks-cluster
     pushd iac
     REPO_NAME=$(terraform output repository_name)
     echo "Removing k8s Services"
