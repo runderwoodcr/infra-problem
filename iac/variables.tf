@@ -37,7 +37,7 @@ variable "jenkins_instance_type" {
 }
 
 variable "node-key" {
-  default     = "runderwood"
+  default     = "key_pair_name"
   type        = "string"
   description = "Key pair for EC2 instances"
 }
